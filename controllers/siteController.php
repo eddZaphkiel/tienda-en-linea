@@ -4,6 +4,9 @@ namespace Controllers;
 
 use MVC\Router;
 
-class siteController {
+class siteController  { 
+    public static function index(Router $router){
+        echo "Eddtqm";
+    }
     
 }

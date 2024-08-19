@@ -4,7 +4,6 @@
 namespace Classes;
 
 use PHPMailer\PHPMailer\PHPMailer;
-// Hola edd
 
 class Email{
 

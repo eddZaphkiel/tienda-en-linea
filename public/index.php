@@ -7,6 +7,6 @@ use MVC\Router;
 
 $router = new Router();
 // This will be a site for a scholl registration
-$router->get('/', [siteController::class, 'inicio']);
+$router->get('/', [siteController::class, 'index']);
 
 $router->checkRoutes();
