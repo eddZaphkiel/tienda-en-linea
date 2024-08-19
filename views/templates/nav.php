@@ -1,8 +1,8 @@
 <nav class="nav">
     <div class="nav_top">
         <div class="nav_logo">
-            <a href="/">
-                <img src="build/img/logo.png" alt="logo">
+            <a href="/login">
+                <div class="img"></div>
             </a>
         </div>
         <div class="nav_controls">
