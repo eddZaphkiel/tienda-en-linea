@@ -7,14 +7,16 @@
     width: 100%;
     background-color: v.$dark;
     color: v.$light;
+    align-items: center;
 
     .nav_top{
+        width: 100%;
+        max-width: v.$desktop;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
         padding: v.$spacing;
-        border-bottom: 1px solid v.$light;
 
         .nav_logo{
             font-size: 2.5rem;
@@ -27,9 +29,13 @@
         .nav_controls{
             display: flex;
             align-items: center;
+            gap: calc(v.$spacing / 2);
+
+            @include m.respond('movil'){
+                gap: v.$spacing;
+            }
 
             .nav_link{
-                padding: v.$spacing;
                 color: v.$light;
                 text-decoration: none;
                 font-weight: v.$bold;
@@ -41,5 +47,31 @@
                 }
             }
         }
+    }
+
+    .nav_bottom{
+        padding: v.$spacing;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @include m.respond('movil'){
+            padding: calc(v.$spacing / 2);
+        }
+
+        .nav_list{
+            display: flex;
+            flex-direction: column;
+            gap: calc(v.$spacing / 2);
+            max-width: v.$desktop;
+            list-style: none;
+        
+            @include m.respond('movil'){
+                flex-direction: row;
+                gap: v.$spacing;
+            }
+        }
+
+
     }
 }
