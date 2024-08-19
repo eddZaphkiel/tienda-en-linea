@@ -1,0 +1,45 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.nav{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: v.$dark;
+    color: v.$light;
+
+    .nav_top{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: v.$spacing;
+        border-bottom: 1px solid v.$light;
+
+        .nav_logo{
+            font-size: 2.5rem;
+            font-weight: v.$bold;
+            color: v.$light;
+            width: 3rem;
+            height: 3rem;
+        }
+
+        .nav_controls{
+            display: flex;
+            align-items: center;
+
+            .nav_link{
+                padding: v.$spacing;
+                color: v.$light;
+                text-decoration: none;
+                font-weight: v.$bold;
+                transition: all 0.3s;
+
+                &:hover{
+                    background-color: v.$light;
+                    color: v.$dark;
+                }
+            }
+        }
+    }
+}
