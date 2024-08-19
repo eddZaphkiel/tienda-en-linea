@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Grey+Qo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Grey+Qo&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+// Fonts
+$font-primary: 'Raleway', sans-serif;
+$font-decoration: 'Grey Qo', cursive;
+
+// Media Queries sizes
+$movil: 600px;
+$tablet: 768px;
+$desktop: 1024px;
+$large-desktop: 1200px;
+
+// Colors
+$white: #fff;
+$black: #000;
+$light: #e5e5e5;
+$dark: #302d33;
+$primary: #6b3fa5;
+$secondary: #6961fa;
+$gray: #9589aa;
+
+// Fonts weight
+$tiny: 300;
+$regular: 400;
+$bold: 700;
+$extraBold: 900;
+
+// Spacing
+$spacing: 5rem;
+
+// Z-indexes
+$z-header: 100;
+$z-modal: 200;
+$z-overlay: 300;
+$z-dropdown: 400;
+$z-alert: 500;
+$z-tooltip: 600;
+$z-cover: 1000;
+$z-footer: -50;
+$z-background: -100;
+
+// Transitions
+$transition: 0.3s ease-in-out;
+$transition-fast: 0.1s ease-in-out;
+$transition-slow: 0.5s ease-in-out;
+
+// Shadows
+$shadow-light: 0 2px 5px rgba(0, 0, 0, 0.1);
+$shadow-dark: 0 2px 5px rgba(0, 0, 0, 0.3);

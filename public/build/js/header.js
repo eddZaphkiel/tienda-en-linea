@@ -1,0 +1,1 @@
+function initHeader(){window.addEventListener("scroll",(function(){document.querySelector("nav").classList.toggle("sticky",window.scrollY>0)}))}document.addEventListener("DOMContentLoaded",(function(){initHeader()}));

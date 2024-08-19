@@ -1,0 +1,201 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+// Navigation
+.nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: v.$z-header;
+
+    @include m.respond('tablet') {
+        padding: calc(v.$spacing / 2);
+    }
+
+    .nav-content{
+        padding: calc(v.$spacing / 4);
+        max-width: v.$large-desktop;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 auto;
+
+        @include m.respond('tablet') {
+            flex-direction: row;
+        }
+    }
+
+    .linker {
+        color: lighten(v.$gray,20);
+        font-size: 3rem;
+        margin: 0 1rem;
+        border-bottom: none;
+        font-style: italic;
+        font-weight: v.$tiny;
+        transition: all 0.3s ease; 
+        position: relative;
+        text-align: center;
+        margin: 1rem 0;
+        overflow: visible;
+
+        @include m.respond('tablet') {
+            font-size: 2rem;
+        }
+      
+        &:hover {
+            color: lighten(v.$gray, 80%);
+            font-weight: v.$bold;
+        }
+        
+        &::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            height: 2px;
+            left: 0;
+            background-color: lighten(v.$primary, 30%);
+            width: 0%;
+            transition: all 0.3s ease; 
+        }
+
+        &::after{
+            content: '/';
+            position: absolute;
+            right: -1rem;
+            color: v.$gray;
+            width: 5%;
+            display: none;
+
+            @include m.respond('tablet') {
+                display: inline;
+            }
+        }
+
+        &:last-child::after {
+            display: none;
+        }
+
+        &:hover::before {
+            width: 100%;
+        }
+
+        &.active::before {
+            width: 100%;
+        }
+
+        &.active {
+            color: v.$white;
+        }
+    }  
+
+    .logo {
+        width: 15rem;
+        height: 5rem;
+        background-image: url('../img/full-logo-dark.webp');
+        background-size: cover;
+        background-position: center center;
+        transition: background 1s ease;
+        a{
+            display: flex;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+        }
+    }
+
+    .nav-buttons{
+        width: 100%;
+        display: flex;
+        gap: 2rem;
+        flex-direction: row;
+        justify-content: space-between;
+
+        @include m.respond('tablet') {
+            width: auto;
+        }
+    }
+
+    &.sticky{
+        //Mades a backround blur effect when the header is sticky
+        background-color: rgba(v.$primary, 0.2);
+        backdrop-filter: blur(3rem);
+        transition: all 0.3s ease;
+
+        //Shadow effect below the header
+        box-shadow: 0 0.5rem 1rem rgba(v.$primary, 0.1);
+    }
+}
+
+.controls-container {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; 
+    align-items: center;
+    gap: 2rem;
+    height: 0; 
+    flex-direction: column;
+    visibility: hidden;
+    margin-top: 2rem;
+    opacity: 0;
+    // Transition effect of the height
+    transition: height 0.3s ease-in, opacity 0.1s, visibility 0.2s;
+
+    @include m.respond('tablet') {
+        flex-direction: row;
+        height: auto;
+        margin-top: 0;
+    }
+
+    .navigation {
+        display: flex;
+        gap: 2rem;
+        flex-direction: column;
+
+        @include m.respond('tablet') {
+            flex-direction: row;
+        }
+    }
+
+    @include m.respond('tablet') {
+        height: auto;
+        flex-direction: row;
+    }
+
+    &.show {
+        height: 100vh;
+        visibility: visible;
+        //Deactivate the scroll when the menu is open
+        scroll-behavior: smooth;
+        overflow-y: hidden;
+        opacity: 1;
+    
+        @include m.respond('tablet') {
+            height: auto;
+        }
+    }
+}
+
+// Classes for the burger menu
+.burger-menu {
+    cursor: pointer;
+    z-index: v.$z-header;
+    width: 3rem;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    i{
+        filter: invert(1);
+        font-size: 3rem;
+    }
+
+    @include m.respond('tablet') {
+        display: none;
+    }
+}
+
+.header-margin{
+    height: 10rem;
+}

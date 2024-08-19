@@ -1,0 +1,176 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.footer{
+    background-color: darken(v.$light,20%);
+    //The left upper corner radius of the footer is 2rem
+    border-top-left-radius: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    .footer-content{
+        margin: v.$spacing;
+        max-width: v.$large-desktop;
+        @include m.grid(1, v.$spacing);
+
+        @include m.respond('movil') {
+            @include m.grid(2, v.$spacing);
+
+            #contact{
+                grid-column: 1 / 3;
+            }
+        }
+
+        @include m.respond('tablet') {
+            @include m.grid(5, v.$spacing);
+
+            #contact{
+                grid-column: 1 / 4
+                ;
+            }
+        }
+
+        .footer-section{
+            p{
+                font-size: 2rem;
+                color: v.$dark;
+                margin-bottom: 1rem;
+                text-align: left;
+            }
+
+            .btn-feat{
+                margin-top: 3rem;
+            }
+        }
+    
+        h3{
+            font-size: 2rem;
+            color: v.$dark;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        ul{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        li{
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .linker {
+            color: darken(v.$gray, 40);
+            font-size: 2rem;
+            margin: 0 1rem;
+            border-bottom: none;
+            font-style: italic;
+            font-weight: v.$regular;
+            transition: all 0.3s ease; 
+            position: relative;
+            text-align: center;
+            margin: 1rem 0;
+            overflow: visible;
+    
+            @include m.respond('tablet') {
+                font-size: 2rem;
+            }
+          
+            &:hover {
+                color: darken(v.$gray, 80%);
+                font-weight: v.$bold;
+            }
+            
+            &::before {
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                height: 2px;
+                left: 0;
+                background-color: darken(v.$primary, 30%);
+                width: 0%;
+                transition: all 0.3s ease; 
+            }
+    
+            &:hover::before {
+                width: 100%;
+            }
+    
+            &.active::before {
+                width: 100%;
+            }
+    
+            &.active {
+                color: v.$white;
+            }
+        }  
+    }
+
+    .social-footer{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .logo {
+        width: 20rem;
+        height: 5rem;
+        margin-bottom: v.$spacing;
+        background-image: url('../img/logo-light.webp');
+        background-size: cover;
+        background-position: center center;
+        transition: background 1s ease;
+        a{
+            display: flex;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+        }
+    }
+
+    .footer-bottom{
+        width: 100%;
+        background-image: 
+            linear-gradient(
+                to right, 
+                darken(v.$primary,20), 
+                darken(v.$primary,35),
+                darken(v.$primary,20),
+            );
+        padding: calc(v.$spacing / 2);
+        text-align: center;
+        color: v.$gray;
+        font-size: 1.4rem;
+    }
+
+    .footer-decoration{
+        width: 100%;
+        background-image: 
+            linear-gradient(
+                to right, 
+                darken(v.$secondary,20), 
+                darken(v.$secondary,50),
+                darken(v.$secondary,20),
+            );
+        padding: calc(v.$spacing / 2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: colorgradient 15s ease infinite;
+    }
+}
+
+@keyframes colorgradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

@@ -1,0 +1,35 @@
+@use 'variables' as v;
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    background-color: v.$dark;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: v.$font-primary;
+    font-size: 1.6rem;
+}
+
+.container {
+    width: 95%;
+    max-width: v.$large-desktop;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}

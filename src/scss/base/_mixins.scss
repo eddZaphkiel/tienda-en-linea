@@ -1,0 +1,41 @@
+@use 'variables' as v;
+
+// Mixins for the grid system
+@mixin grid($columns, $spacing ) {
+    display: grid;
+    grid-template-columns: repeat($columns, 1fr);
+    gap: $spacing;
+}
+
+@mixin grid-template($layout, $spacing) {
+    grid-template-areas: $layout;
+    gap: $spacing;
+}
+
+//Mixins for the media queries
+@mixin respond($breakpoint) {
+    // Multiple breakpoints
+    @if $breakpoint == movil {
+        @media (min-width: v.$movil) { @content; }
+    }
+    @if $breakpoint == tablet {
+        @media (min-width: v.$tablet) { @content; }
+    }
+    @if $breakpoint == desktop {
+        @media (min-width: v.$desktop) { @content; }
+    }
+    @if $breakpoint == large-desktop {
+        @media (min-width: v.$large-desktop) { @content; }
+    }
+}
+
+// mixin for the buttons styles
+@mixin button($color){
+    background-color: $color;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    position: relative;
+}

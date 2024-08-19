@@ -1,0 +1,139 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+// Header
+.header {
+    display: grid;
+    align-items: center; // Centra verticalmente el contenido
+    padding: 2rem; // Agrega espacio alrededor del contenido
+    
+    // Imagen del header
+    .header-picture {
+        height: 100%;
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: v.$spacing;
+        .picture{
+            img{
+                width: 100%;
+                height: auto;
+                border-radius: 2rem; // Redondea las esquinas de la imagen
+            }
+        }
+    }
+
+    // Texto del header
+    .header-text {
+
+        h1 {
+            color: darken(v.$light, 50) ;
+            font-size: 3rem;
+            margin-bottom: calc(v.$spacing / 2);
+            font-weight: v.$bold;
+            position: relative; // Necesario para posicionar el pseudoelemento
+            overflow: hidden; 
+            line-height: 1.2;
+            
+            .header-title--welcome{
+                font-size: 3rem;
+                display: inline;
+                margin-bottom: 0;
+
+                @include m.respond('movil') {
+                    display: block;
+                }
+            }
+
+            .header-title--name { 
+                font-size: 7rem;
+                font-weight: v.$extraBold; // Aumenta el peso de la fuente
+                display: block;
+                color: v.$secondary; // Color de resalte para el nombre
+                background: linear-gradient(to left, 
+                    v.$primary,
+                    lighten(v.$primary, 20%),
+                    lighten(v.$primary, 40%),
+                    lighten(v.$primary, 40%),
+                    lighten(v.$primary, 20%),
+                    v.$primary,
+                ); 
+                background-size: 200%; // Tamaño del gradiente
+                -webkit-background-clip: text;
+                color: transparent;
+                animation: gradientAnimation 1.5s ease-in-out; // Gradient animation
+                transition: background-color v.$transition, color v.$transition;
+
+                @include m.respond('movil') {
+                    font-size: 10rem;
+                }
+            }
+
+            @include m.respond('movil') {
+                font-size: 10rem;
+            }
+        }
+
+        .header-description{
+            font-size: 3rem;
+            margin-bottom: calc(v.$spacing / 2);
+            font-weight: v.$bold;
+            color: v.$gray;
+            transition: background-color v.$transition, color v.$transition;
+        }
+
+        .header-paragraph { // Para el párrafo
+            font-size: 1.6rem;
+            line-height: 1.6;
+            margin-bottom: calc(v.$spacing / 2);
+            transition: background-color v.$transition, color v.$transition;
+        }
+    }
+
+    @include m.respond('tablet') {
+        grid-template-columns: 7fr 5fr; // Divide el espacio en dos columnas
+        column-gap: v.$spacing;
+        grid-auto-flow: column;
+    }
+}
+
+.header-contact{
+    margin: calc(v.$spacing / 2) 0;
+    display: flex;
+    flex-direction: column;
+    gap: calc(v.$spacing / 2);
+    align-items: flex-start;
+
+    .icons{
+        display: flex;
+        gap: calc(v.$spacing / 2);
+
+        .header-contact--icons{
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            border: 1px solid v.$secondary;
+            padding: 0.5rem;
+
+            svg{
+                fill: v.$secondary;
+            }
+        }
+    }
+}
+  
+
+// Gradient animation
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%; // El gradiente comienza a la izquierda
+    }
+    50% {
+        background-position: 100% 50%; // El gradiente se mueve hacia la derecha
+    }
+    100% {
+        background-position: 0% 50%; // El gradiente vuelve a la posición inicial
+    }
+}

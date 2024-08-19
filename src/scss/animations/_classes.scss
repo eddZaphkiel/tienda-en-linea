@@ -1,0 +1,22 @@
+.scale-in-hor-center {
+	-webkit-animation: scale-in-hor-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.3s both;
+	        animation: scale-in-hor-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.3s both;
+}
+
+.fade-in-bottom {
+	-webkit-animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 1.3s both;
+	        animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 1.3s both;
+}
+
+.fade-in-top{
+    -webkit-transform: translateY(-100px); // In start position
+    transform: translateY(-100px); // In start position
+    opacity: 0; // Initial opacity
+    -webkit-animation: slide-top 1.35s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation: slide-top 1.35s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+.scale-in-ver-top {
+	-webkit-animation: scale-in-ver-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s both;
+	        animation: scale-in-ver-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s both;
+}

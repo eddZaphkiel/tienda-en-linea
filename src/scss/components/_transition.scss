@@ -1,0 +1,19 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.cover{
+    z-index: v.$z-cover;
+    position: fixed;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: darken(v.$primary,40);
+    clip-path: circle(100% at 50% 50%);
+    transition: clip-path 1s ease-in-out;
+
+    &.entry{
+        clip-path: circle(0% at 50% 50%);
+    }
+}

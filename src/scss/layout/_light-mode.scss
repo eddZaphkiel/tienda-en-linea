@@ -1,0 +1,98 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.light-mode{
+    .nav {
+        .linker {
+            color: darken(v.$gray,30);
+            font-weight: v.$regular;
+          
+            &:hover {
+                color: darken(v.$gray,40);
+                font-weight: v.$bold;
+            }
+            
+            &::before {
+                background-color: darken(v.$primary, 30%);
+            }
+    
+            &::after{
+                color: darken(v.$gray,10);
+            }
+    
+            &.active {
+                color: v.$dark;
+            }
+        }  
+    
+        .logo {
+            width: 15rem;
+            height: 5rem;
+            background-image: url('../img/full-logo-light.webp');
+            background-size: cover;
+            background-position: center center;
+            a{
+                display: flex;
+                width: 100%;
+                height: 100%;
+                align-items: center;
+            }
+            img {
+                width: 100%;
+            }
+        }
+    
+        .nav-buttons{
+            width: 100%;
+            display: flex;
+            gap: 2rem;
+            flex-direction: row;
+            justify-content: space-between;
+    
+            @include m.respond('tablet') {
+                width: auto;
+            }
+        }
+    }
+
+    .burger-menu{
+        filter: invert(1);
+    }
+
+    .header {
+        .header-text {
+            h1 {
+                .header-title--name { 
+                    font-size: 7rem;
+                    font-weight: v.$extraBold; // Aumenta el peso de la fuente
+                    display: block;
+                    color: v.$secondary; // Color de resalte para el nombre
+                    background: linear-gradient(to left, 
+                        v.$primary,
+                        darken(v.$primary, 10),
+                        darken(v.$primary, 20),
+                        darken(v.$primary, 20),
+                        darken(v.$primary, 10),
+                        v.$primary,
+                    ); 
+                    background-size: 200%; // Tamaño del gradiente
+                    -webkit-background-clip: text;
+                    color: transparent;
+                    animation: gradientAnimation 1.5s ease-in-out;
+
+                    @include m.respond('movil') {
+                        font-size: 10rem;
+                    }
+                }
+            }
+    
+            .header-description{
+                color: darken(v.$gray, 20);
+            }
+    
+            .header-paragraph { // Para el párrafo
+                color: v.$dark;
+            }
+        }
+    }
+}

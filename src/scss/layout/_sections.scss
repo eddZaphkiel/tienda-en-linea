@@ -1,0 +1,16 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.section{
+    margin: calc(v.$spacing * 2) auto 0 auto;
+    padding: 0 2rem;
+
+    .section_title{
+        font-size: 6rem;
+        font-weight: v.$tiny;
+        color: v.$gray;
+        margin-bottom: calc(v.$spacing / 2);
+        font-family: v.$font-primary;
+    }
+
+}
