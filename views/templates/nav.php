@@ -1,8 +1,7 @@
 <nav class="nav">
     <div class="nav_top">
         <div class="nav_logo">
-            <a href="/login">
-                <div class="img"></div>
+            <a href="/">
             </a>
         </div>
         <div class="nav_controls">
