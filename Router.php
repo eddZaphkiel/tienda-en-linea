@@ -36,7 +36,7 @@ class Router
             // Call user fn with the instance of the class
             call_user_func($fn, $this); // This for example is the same as siteController::index($this)
         } else {
-            echo "Página No Encontrada o Ruta no válida";
+            $this->render('404');
         }
     }
 

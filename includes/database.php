@@ -1,6 +1,6 @@
 <?php
 
-$db = mysqli_connect('localhost', 'root', '$19Ed11Ua04$', 'appsalon');
+$db = mysqli_connect('localhost', 'root', '$19Ed11Ua04$', 'tienda_virtual');
 
 
 if (!$db) {

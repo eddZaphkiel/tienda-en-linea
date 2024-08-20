@@ -5,8 +5,8 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: v.$dark;
-    color: v.$light;
+    background-color: lighten(v.$primary,15);
+    color: v.$dark;
     align-items: center;
 
     .nav_top{
