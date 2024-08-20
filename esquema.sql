@@ -66,3 +66,12 @@ CREATE TABLE producto_atributo (
     INDEX idx_id_valor_atributo (ID_valor_atributo), -- Índice en la columna 'ID_valor_atributo' para búsquedas por valor de atributo
     INDEX idx_id_producto_atributo (ID_producto)     -- Índice en la columna 'ID_producto' para búsquedas por producto
 );
+
+INSERT INTO producto (nombre, descripcion, precio, precioDescuento, cantidad)
+VALUES 
+    ('Smartphone Galaxy S23', 'Potente smartphone con cámara de alta resolución', 1299.99, 1149.99, 50),
+    ('Laptop Gamer ASUS ROG', 'Laptop de alto rendimiento para juegos', 1999.00, NULL, 25),
+    ('Cámara Canon EOS R5', 'Cámara mirrorless profesional', 3899.00, NULL, 10),
+    ('Auriculares inalámbricos Sony WH-1000XM4', 'Cancelación de ruido líder en la industria', 349.99, 299.99, 80),
+    ('Smart TV LG OLED 4K', 'Increíble calidad de imagen y sonido', 1599.00, NULL, 30);
+
