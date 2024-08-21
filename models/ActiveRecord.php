@@ -179,4 +179,11 @@ class ActiveRecord {
         return $resultado;
     }
 
+    public function toArray() {
+        $atributos = [];
+        foreach(static::$columnasDB as $columna) {
+            $atributos[$columna] = $this->$columna;
+        }
+        return $atributos;
+    }
 }
