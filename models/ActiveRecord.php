@@ -112,7 +112,7 @@ class ActiveRecord {
 
     // Busca un registro por su id
     public static function find($id) {
-        $query = "SELECT * FROM " . static::$tabla  ." WHERE id = {$id}";
+        $query = "SELECT * FROM " . static::$tabla  ." WHERE ID = {$id}";
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
     }
@@ -125,28 +125,44 @@ class ActiveRecord {
     }
 
     public static function where($columna, $valor) {
-        $query = "SELECT * FROM " . static::$tabla . " WHERE {$columna} = '{$valor}'";
-        $resultado = self::consultarSQL($query);
-        return array_shift( $resultado ) ;
+        $query = "SELECT * FROM " . static::$tabla . " WHERE {$columna} = ?";
+        $stmt = self::$db->prepare($query);
+        $stmt->bind_param('s', $valor); // Suponiendo que $valor es una cadena
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        $array = [];
+        while($registro = $resultado->fetch_assoc()) {
+            $array[] = static::crearObjeto($registro);
+        }
+        $stmt->close();
+        return $array; 
     }
 
     // crea un nuevo registro
     public function crear() {
-        // Sanitizar los datos
+        // Sanitizar los datos (aunque ya no es estrictamente necesario con consultas preparadas, es una buena práctica mantenerlo)
         $atributos = $this->sanitizarAtributos();
-
-        // Insertar en la base de datos
-        $query = " INSERT INTO " . static::$tabla . " ( ";
-        $query .= join(', ', array_keys($atributos));
-        $query .= " ) VALUES (' "; 
-        $query .= join("', '", array_values($atributos));
-        $query .= " ') ";
-
-        // Resultado de la consulta
-        $resultado = self::$db->query($query);
+    
+        // Preparar la consulta
+        $columnas = implode(', ', array_keys($atributos));
+        $placeholders = implode(', ', array_fill(0, count($atributos), '?')); 
+        $query = "INSERT INTO " . static::$tabla . " ( $columnas ) VALUES ( $placeholders )";
+        $stmt = self::$db->prepare($query);
+    
+        // Vincular los parámetros
+        $tipos = str_repeat('s', count($atributos)); // Suponiendo que todos los atributos son cadenas
+        $valores = array_values($atributos);
+        $stmt->bind_param($tipos, ...$valores); 
+    
+        // Ejecutar la consulta
+        $resultado = $stmt->execute();
+    
+        // Cerrar la consulta preparada
+        $stmt->close();
+    
         return [
-           'resultado' =>  $resultado,
-           'id' => self::$db->insert_id
+            'resultado' =>  $resultado,
+            'id' => self::$db->insert_id
         ];
     }
 
@@ -154,21 +170,28 @@ class ActiveRecord {
     public function actualizar() {
         // Sanitizar los datos
         $atributos = $this->sanitizarAtributos();
-
-        // Iterar para ir agregando cada campo de la BD
-        $valores = [];
+    
+        // Preparar la consulta
+        $setClause = [];
         foreach($atributos as $key => $value) {
-            $valores[] = "{$key}='{$value}'";
+            $setClause[] = "{$key} = ?";
         }
-
-        // Consulta SQL
-        $query = "UPDATE " . static::$tabla ." SET ";
-        $query .=  join(', ', $valores );
-        $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
-        $query .= " LIMIT 1 "; 
-
-        // Actualizar BD
-        $resultado = self::$db->query($query);
+        $setClause = implode(', ', $setClause);
+        $query = "UPDATE " . static::$tabla . " SET $setClause WHERE id = ?";
+        $stmt = self::$db->prepare($query);
+    
+        // Vincular los parámetros
+        $tipos = str_repeat('s', count($atributos)) . 'i'; // Suponiendo que todos los atributos son cadenas y el ID es un entero
+        $valores = array_values($atributos);
+        $valores[] = $this->id;
+        $stmt->bind_param($tipos, ...$valores);
+    
+        // Ejecutar la consulta
+        $resultado = $stmt->execute();
+    
+        // Cerrar la consulta preparada
+        $stmt->close();
+    
         return $resultado;
     }
 
@@ -185,5 +208,19 @@ class ActiveRecord {
             $atributos[$columna] = $this->$columna;
         }
         return $atributos;
+    }
+
+    public static function getWhere($columna, $valor, $limite) {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE {$columna} = ? LIMIT {$limite}";
+        $stmt = self::$db->prepare($query);
+        $stmt->bind_param('s', $valor); // Suponiendo que $valor es una cadena
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        $array = [];
+        while($registro = $resultado->fetch_assoc()) {
+            $array[] = static::crearObjeto($registro);
+        }
+        $stmt->close();
+        return $array; 
     }
 }
