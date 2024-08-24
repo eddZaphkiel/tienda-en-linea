@@ -10,6 +10,14 @@ class Imagen extends ActiveRecord
     public $id;
     public $rutaImagen;
 
+    protected static function tiposAtributos()
+    {
+        return [
+            'ID' => 'i',
+            'rutaImagen' => 's'
+        ];
+    }
+
     public function __construct($args = [])
     {
         $this->id = $args['id'] ?? null;

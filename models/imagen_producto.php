@@ -10,6 +10,14 @@ class Imagen_producto extends ActiveRecord{
     public $ID_producto;
     public $ID_imagen;
 
+    protected static function tiposAtributos()
+    {
+        return [
+            'ID_producto' => 'i',
+            'ID_imagen' => 'i'
+        ];
+    }
+
     public function __construct($args = [])
     {
         $this->ID_producto = $args['ID_producto'] ?? null;

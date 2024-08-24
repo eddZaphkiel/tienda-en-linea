@@ -16,8 +16,15 @@ class Atributo extends ActiveRecord
     protected static $tabla = 'atributo';
     protected static $columnasDB = ['ID', 'nombre'];
 
-    public $ID;
     public $nombre;
+
+    protected static function tiposAtributos()
+    {
+        return [
+            'ID' => 'i',
+            'nombre' => 's'
+        ];
+    }
 
     public function __construct($args = [])
     {

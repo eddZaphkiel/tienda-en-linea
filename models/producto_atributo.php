@@ -23,6 +23,14 @@ class Producto_atributo extends ActiveRecord
     public $ID_valor_atributo;
     public $ID_producto;
 
+    protected static function tiposAtributos()
+    {
+        return [
+            'ID_valor_atributo' => 'i',
+            'ID_producto' => 'i'
+        ];
+    }
+
     public function __construct($args = [])
     {
         $this->ID_valor_atributo = $args['ID_valor_atributo'] ?? null;

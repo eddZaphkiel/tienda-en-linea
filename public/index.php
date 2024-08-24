@@ -21,6 +21,7 @@ $router->get('/admin', adminController::class, 'admin_index');
 $router->get('/admin/productos', adminController::class, 'admin_productos');
 
 $router->get('/api/producto', [apiController::class, 'producto']);
+$router->get('/api/productos', [apiController::class, 'productos']);
 
 
 $router->checkRoutes();

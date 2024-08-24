@@ -35,9 +35,9 @@ CREATE TABLE imagen (
 
 -- Tabla imagen_producto (relación muchos a muchos entre producto e imagen)
 CREATE TABLE imagen_producto (
+	ID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     ID_producto INT,
     ID_imagen INT,
-    PRIMARY KEY (ID_producto, ID_imagen),
     FOREIGN KEY (ID_producto) REFERENCES producto(ID),
     FOREIGN KEY (ID_imagen) REFERENCES imagen(ID),
     INDEX idx_id_producto (ID_producto), -- Índice en la columna 'ID_producto' para búsquedas por producto
@@ -63,9 +63,9 @@ CREATE TABLE valor_atributo (
 
 -- Tabla producto_atributo (relación muchos a muchos entre producto y valor_atributo)
 CREATE TABLE producto_atributo (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
     ID_valor_atributo INT,
     ID_producto INT,
-    PRIMARY KEY (ID_valor_atributo, ID_producto),
     FOREIGN KEY (ID_valor_atributo) REFERENCES valor_atributo(ID),
     FOREIGN KEY (ID_producto) REFERENCES producto(ID),
     INDEX idx_id_valor_atributo (ID_valor_atributo), -- Índice en la columna 'ID_valor_atributo' para búsquedas por valor de atributo
@@ -106,3 +106,37 @@ END //
 
 DELIMITER ;
 
+DELIMITER //
+
+CREATE PROCEDURE obtenerProductosBasicos()
+BEGIN
+    SELECT 
+        p.ID, 
+        p.nombre, 
+        p.precio, 
+        p.precioDescuento,
+        (
+            SELECT i.rutaImagen 
+            FROM imagen i
+            JOIN imagen_producto ip ON i.ID = ip.ID_imagen
+            WHERE ip.ID_producto = p.ID
+            ORDER BY ip.ID ASC -- Ordenar por ID de imagen_producto para obtener la primera
+            LIMIT 1
+        ) AS imagen
+    FROM producto p;
+END //
+
+DELIMITER ;
+
+INSERT INTO producto (nombre, descripcion, precio, precioDescuento, cantidad)
+VALUES 
+    ('Smartphone Galaxy S23', 'Potente smartphone con cámara de alta resolución', 1299.99, 1149.99, 120),
+    ('Laptop Gamer ASUS ROG', 'Laptop de alto rendimiento para juegos', 1999.00, NULL, 25),
+    ('Cámara Canon EOS R5', 'Cámara mirrorless profesional', 3899.00, NULL, 10),
+    ('Auriculares inalámbricos Sony WH-1000XM4', 'Cancelación de ruido líder en la industria', 349.99, 299.99, 80),
+    ('Smart TV LG OLED 4K', 'Increíble calidad de imagen y sonido', 1599.00, NULL, 30);
+    
+CALL obtenerProductoCompleto('1');
+CALL obtenerProductosBasicos();
+
+CALL obtenerProductoCompleto(1);
