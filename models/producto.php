@@ -35,9 +35,11 @@ class Producto extends ActiveRecord
     }
 
     public static function getAllProducts(){
-        $resultado = self::executeSQL('CALL obtenerProductosBasicos()');
-        if($resultado){
-            return $resultado;
+        $productos = Producto::all();
+        
+        $data = [];
+        foreach($productos as $producto){
+            debug($producto);
         }
     }
 

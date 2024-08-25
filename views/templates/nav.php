@@ -1,35 +1,11 @@
-<nav class="nav">
-    <div class="nav_top">
-        <div class="nav_logo">
-            <a href="/">
-            </a>
-        </div>
-        <div class="nav_controls">
-            <!-- Boton para el carrito -->
-            <a href="/cart" class="nav_link">
-                <i class="fas fa-shopping-cart"></i>
-            </a>
-            <!-- Boton para el inicio de sesion -->
-            <a href="/login" class="nav_link">
-                <i class="fas fa-user"></i>
-            </a>
-            <!-- Boton para el menu -->
-            <button class="nav_link" id="nav_btn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
+<div class="nav">
+    <div class="nav_menu">
+        <a href="/" class="nav_menu_link">Inicio</a>
+        <a href="/freq" class="nav_menu_link">Preguntas frecuentes</a>
+        <a href="/#contacto" class="nav_menu_link">Contacto</a>
+        <button class="nav_menu_respond">
+            svg
+        </button>
     </div>
-    <div class="nav_bottom">
-        <ul class="nav_list">
-            <li class="nav_item">
-                <a href="/promotions" class="nav_link">Promociones</a>
-            </li>
-            <li class="nav_item">
-                <a href="#freq-questions" class="nav_link">Preguntas frecuentes</a>
-            </li>
-            <li class="nav_item">
-                <a href="#contact" class="nav_link">Contáctame</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+
+</div>

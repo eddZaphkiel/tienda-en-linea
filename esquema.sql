@@ -106,28 +106,6 @@ END //
 
 DELIMITER ;
 
-DELIMITER //
-
-CREATE PROCEDURE obtenerProductosBasicos()
-BEGIN
-    SELECT 
-        p.ID, 
-        p.nombre, 
-        p.precio, 
-        p.precioDescuento,
-        (
-            SELECT i.rutaImagen 
-            FROM imagen i
-            JOIN imagen_producto ip ON i.ID = ip.ID_imagen
-            WHERE ip.ID_producto = p.ID
-            ORDER BY ip.ID ASC -- Ordenar por ID de imagen_producto para obtener la primera
-            LIMIT 1
-        ) AS imagen
-    FROM producto p;
-END //
-
-DELIMITER ;
-
 INSERT INTO producto (nombre, descripcion, precio, precioDescuento, cantidad)
 VALUES 
     ('Smartphone Galaxy S23', 'Potente smartphone con cámara de alta resolución', 1299.99, 1149.99, 120),
