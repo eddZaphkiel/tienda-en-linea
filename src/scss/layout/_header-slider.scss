@@ -1,0 +1,134 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.header{
+    height: 30rem;
+    max-width: v.$desktop;
+    position: relative;
+
+    .slider{
+        height: 100%;
+        width: 100%;
+        max-width: v.$tablet;
+        background-color: lighten(v.$primary, 10);
+        border-radius: 1rem;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+
+        .slider_slides{
+            position: absolute;
+            inset: 0;
+            height: 100%;
+            display: flex;
+            width: max-content;
+            transition: 1s ease-in-out;
+
+            .slide{
+                width: v.$tablet;
+                max-width: v.$tablet;
+                height: 100%;
+                background-color: aqua;
+                object-fit: cover;
+            }
+        }
+
+        .slider_controls{
+            position: absolute;
+            width: 90%;
+            inset: 45% 5%;
+            display: flex;
+            justify-content: space-between;
+
+            .slider_control{
+                width: 5rem;
+                height: 5rem;
+                border-radius: 50%;
+                background-color: transparentize(v.$gray, 0.6);
+                color: v.$light;
+                border: none;
+                font-family: monospace;
+                font-weight: v.$extraBold;
+            }
+        }
+
+        .slider_dots{
+            position: absolute;
+            bottom: 1rem;
+            width: 100%;
+            color: v.$white;
+            left: 0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+
+            li{
+                list-style: none;
+                width: 1rem;
+                height: 1rem;
+                background-color: v.$white;
+                margin: 2rem;
+                border-radius: 2rem;
+                transition: 1s;
+
+                &.active{
+                    width: 3rem;
+                }
+            }
+        }
+    }
+}
+
+.slider{
+    &_decoration{
+        height: 100%;
+        width: 20rem;
+        position: absolute;
+        z-index: -1;
+
+        &--l{
+            left: 0;
+
+            .decoration{
+                &--1{
+                    transform: rotate(-15deg);
+                }
+
+                &--2{
+                    transform: rotate(-20deg);
+                }
+            }
+        }
+
+        &--r{
+            right: 0;
+
+            .decoration{
+                &--1{
+                    transform: rotate(15deg);
+                }
+
+                &--2{
+                    transform: rotate(20deg);
+                }
+            }
+        }
+
+        .decoration{
+            position: absolute;
+            width: 20rem;
+            height: 20rem;
+            
+            &--1{
+                bottom: 0;
+                z-index: -2;
+            }
+
+            &--2{
+                bottom: 20%;
+                z-index: -1;
+            }
+        }
+    }
+}

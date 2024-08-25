@@ -6,7 +6,7 @@ use MVC\Router;
 
 class siteController  { 
     public static function index(Router $router){
-        $router->render('site/index');
+        $router->render('site/index/_index');
     }
 
     public static function cart(Router $router){
